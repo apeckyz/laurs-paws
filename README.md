@@ -4,12 +4,14 @@ A modern, responsive website for Laur's Paws pet grooming and care services in T
 
 ## Features
 
+- **Online Booking System**: Interactive calendar with time slot selection and form submission
 - **Responsive Design**: Mobile-first approach with beautiful layouts on all devices
 - **Brand Identity**: Custom color palette and typography matching business card styling
 - **Interactive Gallery**: Before/After slider and image grid showcase
 - **Smooth Animations**: Framer Motion powered transitions and scroll effects
 - **Accessibility**: WCAG 2.1 AA compliant with semantic HTML
 - **Performance**: Optimized images and code splitting
+- **Form Integration**: Formspree-powered booking requests
 
 ## Tech Stack
 

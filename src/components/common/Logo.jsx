@@ -1,8 +1,9 @@
 const Logo = ({ size = 'large', className = '' }) => {
   const sizes = {
-    small: 'h-12',
+    small: 'h-24',
     medium: 'h-20',
-    large: 'h-32'
+    large: 'h-32',
+    hero: 'h-48'
   };
   
   return (

@@ -7,14 +7,46 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Changed
-- Updated color palette to Gemini-extracted colors from styling.jpg for more accurate brand representation
-- Refined background pattern opacity from 5% to 12% (10-15% range) for better visibility
-- Changed color naming from 'orange' to 'peach' to better reflect the actual brand color
-
 ---
 
 ## Version History
+
+### [0.2.0] - 2026-01-29 - V2 Deployment
+
+#### Added
+- **Booking System**: Interactive booking modal with calendar and time slot selection
+  - React Day Picker integration for date selection
+  - Dynamic time slot availability based on opening hours
+  - Formspree integration for booking form submissions
+  - Service selection (Grooming, Walking, Sitting, Cat Visits)
+  - Pet information fields (name, type)
+  - Custom calendar styling matching brand colors
+- **Book Now Button**: Added to OpeningTimes component replacing static text
+- **Enhanced Logo Sizes**: 
+  - Header logo increased to 2x size (h-24)
+  - New hero logo size (h-48) added above main heading
+  - Logo now spans full width of text content in hero section
+
+#### Changed
+- Header logo size doubled from h-12 to h-24
+- Hero section layout updated with larger logo placement above heading
+- OpeningTimes component now includes interactive booking button
+- Added react-day-picker and date-fns dependencies
+
+#### Technical Details
+- New component: `BookingModal.jsx` with full booking flow
+- Calendar styling: Custom CSS for react-day-picker
+- Form integration: Formspree endpoint for booking submissions
+- Time slot logic: Dynamic availability based on day of week
+- Disabled Sundays in calendar (closed day)
+- Different time slots for Saturday vs weekdays
+
+### [0.1.1] - 2026-01-29
+
+#### Changed
+- Updated color palette to Gemini-extracted colors from styling.jpg for more accurate brand representation
+- Refined background pattern opacity from 5% to 12% (10-15% range) for better visibility
+- Changed color naming from 'orange' to 'peach' to better reflect the actual brand color
 
 ### [0.1.1] - 2026-01-29
 

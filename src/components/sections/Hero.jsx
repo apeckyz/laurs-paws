@@ -32,9 +32,11 @@ const Hero = () => {
             transition={{ duration: 0.8 }}
             className="text-left"
           >
-            <Logo size="large" color="black" />
+            <div className="mb-8">
+              <Logo size="hero" color="black" className="w-full max-w-xl" />
+            </div>
             
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mt-8 mb-4">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 max-w-xl">
               Professional Pet Care in Truro
             </h1>
             

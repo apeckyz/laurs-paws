@@ -13,9 +13,10 @@ High-end, responsive pet services website for "Laur's Paws" - a professional pet
 - **Framer Motion**: Animation library for smooth transitions and interactions
 
 ### Additional Dependencies
-- **React Router DOM**: Client-side routing (if multi-page)
-- **React Image Gallery**: For before/after slider functionality
-- **React Intersection Observer**: Scroll-based animations
+- **React Day Picker**: Calendar component for booking system
+- **date-fns**: Date manipulation and formatting
+- **React Compare Image**: For before/after slider functionality
+- **Formspree**: Form submission service for booking requests
 
 ## Folder Structure
 
@@ -101,11 +102,13 @@ App
 │   ├── Gallery
 │   │   ├── SectionHeading
 │   │   ├── BeforeAfterSlider
-│   │   └── ImageGrid
+│   │   ├── ImageGrid
+│   │   └── BookingModal
 │   ├── Contact
 │   │   ├── SectionHeading
 │   │   ├── ContactInfo
 │   │   └── OpeningTimes
+│   │       └── BookingModal (conditional)
 └── Footer
 ```
 
