@@ -1,9 +1,27 @@
-import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import Logo from '../common/Logo';
 import Button from '../ui/Button';
 import { BUSINESS_INFO } from '../../utils/constants';
 
 const Hero = () => {
+  const heroImages = [
+    '/laur-with-dog.jpg',
+    '/laur-with-dog2.jpg',
+    '/laur-with-dog3.jpg',
+    '/laur-with-dog5.jpg'
+  ];
+
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % heroImages.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [heroImages.length]);
+
   return (
     <section id="home" className="relative min-h-screen flex items-center bg-gradient-to-br from-brand-yellow via-brand-peach to-brand-blue pt-24">
       <div className="container-custom section-padding">
@@ -45,12 +63,19 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="relative"
           >
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-              <img 
-                src="/laur-with-dog.jpg" 
-                alt="Laura with a happy dog"
-                className="w-full h-auto object-cover"
-              />
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/3]">
+              <AnimatePresence mode="wait">
+                <motion.img
+                  key={currentImageIndex}
+                  src={heroImages[currentImageIndex]}
+                  alt="Laura with a happy dog"
+                  className="w-full h-full object-cover absolute inset-0"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.7 }}
+                />
+              </AnimatePresence>
             </div>
             
             <motion.div
