@@ -6,22 +6,42 @@ const BeforeAfterSlider = ({ beforeImage, afterImage, alt = "Before and After" }
   const [isDragging, setIsDragging] = useState(false);
   
   const handleMove = (e) => {
-    if (!isDragging && e.type !== 'click') return;
+    if (!isDragging && e.type !== 'click' && e.type !== 'touchmove') return;
     
     const rect = e.currentTarget.getBoundingClientRect();
-    const x = (e.clientX || e.touches?.[0]?.clientX) - rect.left;
+    let x;
+    
+    if (e.touches && e.touches[0]) {
+      x = e.touches[0].clientX - rect.left;
+    } else if (e.clientX !== undefined) {
+      x = e.clientX - rect.left;
+    } else {
+      return;
+    }
+    
     const percentage = (x / rect.width) * 100;
     setSliderPosition(Math.min(Math.max(percentage, 0), 100));
   };
   
+  const handleTouchMove = (e) => {
+    e.preventDefault();
+    handleMove(e);
+  };
+
+  const handleTouchStart = (e) => {
+    setIsDragging(true);
+    handleMove(e);
+  };
+
   return (
     <div 
-      className="relative w-full aspect-[4/3] overflow-hidden rounded-xl shadow-lg cursor-col-resize select-none"
+      className="relative w-full aspect-[4/3] overflow-hidden rounded-xl shadow-lg cursor-col-resize select-none touch-none"
       onMouseMove={handleMove}
-      onTouchMove={handleMove}
+      onTouchMove={handleTouchMove}
       onMouseDown={() => setIsDragging(true)}
       onMouseUp={() => setIsDragging(false)}
-      onTouchStart={() => setIsDragging(true)}
+      onMouseLeave={() => setIsDragging(false)}
+      onTouchStart={handleTouchStart}
       onTouchEnd={() => setIsDragging(false)}
       onClick={handleMove}
     >
