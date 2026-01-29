@@ -89,6 +89,25 @@ laurs-paws/
 - **Email**: laurajevans92@hotmail.co.uk
 - **Address**: 17 Green Close, Daniel Road, Truro, TR1 2DD
 
+## Deployment
+
+This project is configured for deployment to Coolify using Docker.
+
+### Quick Deploy to Coolify
+
+1. Connect your Coolify instance to this GitHub repository
+2. Select "Docker" as the build pack
+3. Set port to `80`
+4. Deploy!
+
+For detailed deployment instructions, see [DEPLOYMENT.md](DEPLOYMENT.md)
+
+### Files for Deployment
+
+- `Dockerfile` - Multi-stage Docker build configuration
+- `nginx.conf` - Nginx server configuration for production
+- `.dockerignore` - Optimizes Docker build by excluding unnecessary files
+
 ## License
 
 © 2026 Laur's Paws. All rights reserved.
