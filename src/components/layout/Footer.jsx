@@ -2,7 +2,7 @@ import { Phone, Mail, MapPin, Globe, Instagram, Facebook } from 'lucide-react';
 import Logo from '../common/Logo';
 import { BUSINESS_INFO } from '../../utils/constants';
 
-const Footer = () => {
+const Footer = ({ onOpenPrivacy }) => {
   return (
     <footer className="bg-brand-yellow relative z-10">
       <div className="container-custom section-padding">
@@ -91,9 +91,28 @@ const Footer = () => {
           </div>
         </div>
         
-        <div className="border-t-2 border-brand-black pt-6 text-center">
+        <div className="border-t-2 border-brand-black pt-6 text-center space-y-3">
+          <div className="flex justify-center gap-4 text-sm">
+            <button
+              onClick={onOpenPrivacy}
+              className="hover:underline transition-all font-medium"
+            >
+              Privacy Policy
+            </button>
+          </div>
           <p className="text-sm">
             &copy; {new Date().getFullYear()} {BUSINESS_INFO.name}. All rights reserved.
+          </p>
+          <p className="text-xs text-gray-700">
+            Designed by{' '}
+            <a 
+              href="https://jmcdev.co.uk" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="font-semibold hover:underline transition-all"
+            >
+              jmcdev
+            </a>
           </p>
         </div>
       </div>

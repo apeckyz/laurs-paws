@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import BackgroundPattern from './components/layout/BackgroundPattern';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
@@ -6,8 +6,11 @@ import Hero from './components/sections/Hero';
 import Services from './components/sections/Services';
 import Gallery from './components/sections/Gallery';
 import Contact from './components/sections/Contact';
+import PrivacyPolicy from './components/ui/PrivacyPolicy';
+import CookieBanner from './components/ui/CookieBanner';
 
 function App() {
+  const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
   useEffect(() => {
     const handleSmoothScroll = (e) => {
       const href = e.target.getAttribute('href');
@@ -41,7 +44,9 @@ function App() {
         <Gallery />
         <Contact />
       </main>
-      <Footer />
+      <Footer onOpenPrivacy={() => setIsPrivacyOpen(true)} />
+      <PrivacyPolicy isOpen={isPrivacyOpen} onClose={() => setIsPrivacyOpen(false)} />
+      <CookieBanner onOpenPrivacy={() => setIsPrivacyOpen(true)} />
     </div>
   );
 }

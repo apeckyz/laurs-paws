@@ -40,7 +40,7 @@ const Contact = () => {
         />
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
-          <div className="space-y-6">
+          <div className="space-y-4 flex flex-col">
             {contactMethods.map((method, index) => {
               const Icon = method.icon;
               return (
@@ -92,14 +92,21 @@ const Contact = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.4 }}
-              className="flex gap-4"
+              className="grid grid-cols-2 gap-3 mt-auto"
             >
               <Button 
+                href={`tel:${BUSINESS_INFO.phone.replace(/\s/g, '')}`}
+                className="flex items-center justify-center gap-2"
+              >
+                <Phone size={20} />
+                Call Now
+              </Button>
+              <Button 
                 href={`https://wa.me/${BUSINESS_INFO.phone.replace(/\s/g, '')}`}
-                className="flex-1 flex items-center justify-center gap-2"
+                className="flex items-center justify-center gap-2"
               >
                 <MessageCircle size={20} />
-                WhatsApp Us
+                WhatsApp
               </Button>
             </motion.div>
           </div>
