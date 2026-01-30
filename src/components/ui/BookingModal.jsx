@@ -17,8 +17,6 @@ const BookingModal = ({ isOpen, onClose }) => {
     petType: '',
     notes: ''
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitSuccess, setSubmitSuccess] = useState(false);
 
   const services = [
     'Pet Grooming',
@@ -58,56 +56,41 @@ const BookingModal = ({ isOpen, onClose }) => {
     setSelectedTime(null);
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setIsSubmitting(true);
+    
+    const whatsappMessage = `Hi, I'd like to book an appointment with the following details:
 
-    const bookingData = {
-      ...formData,
-      service: selectedService,
-      date: selectedDate ? format(selectedDate, 'EEEE, MMMM d, yyyy') : '',
-      time: selectedTime,
-      message: `Booking Request:
-Service: ${selectedService}
-Date: ${selectedDate ? format(selectedDate, 'EEEE, MMMM d, yyyy') : ''}
-Time: ${selectedTime}
-Pet Name: ${formData.petName}
-Pet Type: ${formData.petType}
-Additional Notes: ${formData.notes || 'None'}`
-    };
+*Service:* ${selectedService}
+*Date:* ${selectedDate ? format(selectedDate, 'EEEE, MMMM d, yyyy') : ''}
+*Time:* ${selectedTime}
 
-    try {
-      const response = await fetch('https://formspree.io/f/xeekzjbe', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(bookingData)
-      });
+*Customer Details:*
+Name: ${formData.name}
+Email: ${formData.email}
+Phone: ${formData.phone}
+Pet Name: ${formData.petName || 'N/A'}
+Pet Type: ${formData.petType || 'N/A'}
 
-      if (response.ok) {
-        setSubmitSuccess(true);
-        setTimeout(() => {
-          onClose();
-          setSubmitSuccess(false);
-          setSelectedDate(null);
-          setSelectedTime(null);
-          setSelectedService('');
-          setFormData({
-            name: '',
-            email: '',
-            phone: '',
-            petName: '',
-            petType: '',
-            notes: ''
-          });
-        }, 2000);
-      }
-    } catch (error) {
-      console.error('Booking submission error:', error);
-    } finally {
-      setIsSubmitting(false);
-    }
+${formData.notes ? `*Additional Notes:*\n${formData.notes}` : ''}`;
+
+    const encodedMessage = encodeURIComponent(whatsappMessage);
+    const whatsappUrl = `https://wa.me/447446493344?text=${encodedMessage}`;
+    
+    window.open(whatsappUrl, '_blank');
+    
+    onClose();
+    setSelectedDate(null);
+    setSelectedTime(null);
+    setSelectedService('');
+    setFormData({
+      name: '',
+      email: '',
+      phone: '',
+      petName: '',
+      petType: '',
+      notes: ''
+    });
   };
 
   const availableTimes = getAvailableTimesForDay(selectedDate);
@@ -143,14 +126,7 @@ Additional Notes: ${formData.notes || 'None'}`
                 </button>
               </div>
 
-              {submitSuccess ? (
-                <div className="p-8 text-center">
-                  <div className="text-6xl mb-4">🎉</div>
-                  <h3 className="text-2xl font-bold text-green-600 mb-2">Booking Request Sent!</h3>
-                  <p className="text-gray-600">We'll contact you shortly to confirm your appointment.</p>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="p-6 md:p-8">
+              <form onSubmit={handleSubmit} className="p-6 md:p-8">
                   <div className="mb-8">
                     <label className="block text-lg font-semibold mb-3">Select Service *</label>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -295,17 +271,16 @@ Additional Notes: ${formData.notes || 'None'}`
 
                   <button
                     type="submit"
-                    disabled={!canSubmit || isSubmitting}
+                    disabled={!canSubmit}
                     className={`w-full py-4 rounded-lg font-bold text-lg transition-all ${
-                      canSubmit && !isSubmitting
+                      canSubmit
                         ? 'bg-brand-yellow hover:bg-brand-yellow/90 text-black'
                         : 'bg-gray-300 text-gray-500 cursor-not-allowed'
                     }`}
                   >
-                    {isSubmitting ? 'Sending...' : 'Submit Booking Request'}
+                    Book via WhatsApp
                   </button>
                 </form>
-              )}
             </motion.div>
           </motion.div>
         </>

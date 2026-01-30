@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Phone, Mail, MapPin, MessageCircle } from 'lucide-react';
+import { Phone, Mail, MapPin, MessageCircle, Calendar as CalendarIcon } from 'lucide-react';
 import SectionHeading from '../common/SectionHeading';
 import Card from '../ui/Card';
 import Button from '../ui/Button';
@@ -87,28 +87,6 @@ const Contact = () => {
               </Card>
             </motion.div>
             
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="grid grid-cols-2 gap-3 mt-auto"
-            >
-              <Button 
-                href={`tel:${BUSINESS_INFO.phone.replace(/\s/g, '')}`}
-                className="flex items-center justify-center gap-2"
-              >
-                <Phone size={20} />
-                Call Now
-              </Button>
-              <Button 
-                href={`https://wa.me/${BUSINESS_INFO.phone.replace(/\s/g, '')}`}
-                className="flex items-center justify-center gap-2"
-              >
-                <MessageCircle size={20} />
-                WhatsApp
-              </Button>
-            </motion.div>
           </div>
           
           <motion.div
@@ -133,12 +111,32 @@ const Contact = () => {
             Give your pet the care they deserve. Contact us today to schedule an appointment 
             or to learn more about our services.
           </p>
-          <Button 
-            href={`tel:${BUSINESS_INFO.phone.replace(/\s/g, '')}`}
-            size="large"
-          >
-            Call Now: {BUSINESS_INFO.phone}
-          </Button>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto">
+            <Button 
+              href="#contact"
+              size="large"
+              className="flex items-center justify-center gap-2 w-full"
+            >
+              <CalendarIcon size={20} />
+              Book Now
+            </Button>
+            <Button 
+              href={`tel:${BUSINESS_INFO.phone.replace(/\s/g, '')}`}
+              size="large"
+              className="flex items-center justify-center gap-2 w-full"
+            >
+              <Phone size={20} />
+              Call Now
+            </Button>
+            <Button 
+              href={`https://wa.me/${BUSINESS_INFO.phone.replace(/\s/g, '')}`}
+              size="large"
+              className="flex items-center justify-center gap-2 w-full"
+            >
+              <MessageCircle size={20} />
+              WhatsApp
+            </Button>
+          </div>
         </motion.div>
       </div>
     </section>

@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import Logo from '../common/Logo';
 import Button from '../ui/Button';
 import { BUSINESS_INFO } from '../../utils/constants';
 
@@ -30,12 +29,8 @@ const Hero = () => {
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-left"
+            className="text-center lg:text-left flex flex-col items-center lg:items-start"
           >
-            <div className="mb-8">
-              <Logo size="hero" color="black" className="w-full max-w-xl" />
-            </div>
-            
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 max-w-xl">
               Professional Pet Care in Truro
             </h1>
